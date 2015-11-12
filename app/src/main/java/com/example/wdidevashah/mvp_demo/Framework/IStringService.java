@@ -26,8 +26,6 @@ public interface IStringService extends IObject {
 
 	boolean IsStringStartsWith(String source, String string);
 
-	IStringList SplitString(String source, String string);
-	
 	String RemoveLastOccurence(String source, String string);
 
 	char GetCharAt(String source, int index);

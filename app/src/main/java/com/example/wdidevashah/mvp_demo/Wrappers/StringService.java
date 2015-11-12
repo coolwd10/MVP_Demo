@@ -1,11 +1,6 @@
 package com.example.wdidevashah.mvp_demo.Wrappers;
 
-import android.util.Base64;
-
-import com.example.wdidevashah.mvp_demo.Framework.IStringList;
 import com.example.wdidevashah.mvp_demo.Framework.IStringService;
-
-import java.text.DecimalFormat;
 
 public class StringService implements IStringService {
 	
@@ -72,16 +67,6 @@ public class StringService implements IStringService {
 		return source.contains(str);
 	}
 	
-	@Override
-	public IStringList SplitString(String source, String string) {
-		String[] values = source.split(string);
-		IStringList vList = PlatformFactoryLocator.GetPlatformFactory().CreateStringList();
-		for (String s : values) {
-			vList.AddItem(s);
-		}
-		return vList;
-	}
-
 	@Override
 	public String GetStringValueOfDouble(double doubleValue) {
 		return String.valueOf(doubleValue);

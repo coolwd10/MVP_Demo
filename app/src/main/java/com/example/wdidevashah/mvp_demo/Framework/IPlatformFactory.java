@@ -8,5 +8,4 @@ public interface IPlatformFactory extends IObject {
 
 	IStringService CreateStringService();
 
-	IStringList CreateStringList();
 }
