@@ -9,7 +9,6 @@ import com.example.wdidevashah.mvp_demo.R;
 
 public class MainActivity extends Activity {
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -8,9 +8,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
+import com.example.wdidevashah.mvp_demo.Mobile.Core.MVP.Presenter;
 import com.example.wdidevashah.mvp_demo.Presenter.LoginPresenter;
 import com.example.wdidevashah.mvp_demo.R;
-import com.example.wdidevashah.mvp_demo.View.ILoginPresenter;
 import com.example.wdidevashah.mvp_demo.View.ILoginView;
 import com.example.wdidevashah.mvp_demo.main.MainActivity;
 
@@ -20,7 +20,7 @@ public class LoginActivity extends Activity implements ILoginView, View.OnClickL
     private ProgressBar mProgressBar;
     private EditText mUsername;
     private EditText mPassword;
-    private ILoginPresenter mLogingPresenter;
+    private LoginPresenter mLogingPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +32,7 @@ public class LoginActivity extends Activity implements ILoginView, View.OnClickL
         mPassword = (EditText) findViewById(R.id.password);
         findViewById(R.id.button).setOnClickListener(this);
 
-        mLogingPresenter = new LoginPresenter(this);
+        mLogingPresenter =  new LoginPresenter(this);
     }
 
     @Override
@@ -46,13 +46,13 @@ public class LoginActivity extends Activity implements ILoginView, View.OnClickL
     }
 
     @Override
-    public void setUsernameError() {
-        mUsername.setError(getString(R.string.username_error));
+    public void setUsernameError(String errorMsg) {
+        mUsername.setError(errorMsg);
     }
 
     @Override
-    public void setPasswordError() {
-        mPassword.setError(getString(R.string.password_error));
+    public void setPasswordError(String errorMsg) {
+        mPassword.setError(errorMsg);
     }
 
     @Override
@@ -64,5 +64,23 @@ public class LoginActivity extends Activity implements ILoginView, View.OnClickL
     @Override
     public void onClick(View v) {
         mLogingPresenter.validateCredentials(mUsername.getText().toString(), mPassword.getText().toString());
+    }
+
+    @Override
+    public Presenter GetPresenterOrController() {
+        return mLogingPresenter;
+    }
+
+    @Override
+    public void OnDestroy() {
+        mProgressBar = null;
+        mUsername = null;
+        mPassword = null;
+        mLogingPresenter = null;
+    }
+
+    @Override
+    public String GetClassName() {
+        return null;
     }
 }
